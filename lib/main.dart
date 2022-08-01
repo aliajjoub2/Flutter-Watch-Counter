@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:html';
+
 
 import 'package:flutter/material.dart';
 
@@ -51,12 +51,24 @@ class _CounterWatchState extends State<CounterWatch> {
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                   padding: const EdgeInsets.all(11),
                   margin: const EdgeInsets.all(11),
+                    //color: Colors.red,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(2),
+                    color: Colors.red[200],
+                    border: Border.all(
+                      color: Colors.red,
+                      width: 3,
+                    ),
+                    // shape: BoxShape.circle,
+                  ),
                   child: Text(duration.inHours.toString().padLeft(2, '0')),
                 ),
                 const SizedBox(
@@ -65,6 +77,16 @@ class _CounterWatchState extends State<CounterWatch> {
                 Container(
                   padding: const EdgeInsets.all(11),
                   margin: const EdgeInsets.all(11),
+                    //color: Colors.red,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(2),
+                    color: Colors.red[200],
+                    border: Border.all(
+                      color: Colors.red,
+                      width: 3,
+                    ),
+                    // shape: BoxShape.circle,
+                  ),
                   child: Text(duration.inMinutes
                       .remainder(60)
                       .toString()
@@ -76,6 +98,16 @@ class _CounterWatchState extends State<CounterWatch> {
                 Container(
                   padding: const EdgeInsets.all(11),
                   margin: const EdgeInsets.all(11),
+                  //color: Colors.red,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(2),
+                    color: Colors.red[200],
+                    border: Border.all(
+                      color: Colors.red,
+                      width: 3,
+                    ),
+                    // shape: BoxShape.circle,
+                  ),
                   child: Text(duration.inSeconds
                       .remainder(60)
                       .toString()
@@ -90,6 +122,7 @@ class _CounterWatchState extends State<CounterWatch> {
               height: 20,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 isRunning
                     ? Row(
@@ -107,10 +140,12 @@ class _CounterWatchState extends State<CounterWatch> {
                               child: Text(repeatedFunction!.isActive
                                   ? 'Stop'
                                   : 'Resume')),
+                          const SizedBox(width: 20),
                           ElevatedButton(
                               onPressed: () {
                                 setState(() {
                                   duration = const Duration(seconds: 0);
+                                  repeatedFunction!.cancel();
                                   isRunning = false;
                                 });
                               },
